@@ -1,0 +1,12 @@
+#Given the array arr of positive integers and the array queries where queries[i] = [Li, Ri], for each query i compute the XOR of elements from Li to Ri (that is, arr[Li] xor arr[Li+1] xor ... xor arr[Ri] ). Return an array containing the result for the given queries.
+#Solution
+class Solution:
+    def xorQueries(self, arr: List[int], queries: List[List[int]]) -> List[int]:
+        xor = [0]*(len(arr) + 1)
+        for i in range(len(arr)):
+            xor[i+1] = xor[i]^arr[i]
+        res = []
+        for q in queries:
+            l, r = q[0], q[1]
+            res.append(xor[l]^xor[r+1])
+        return res

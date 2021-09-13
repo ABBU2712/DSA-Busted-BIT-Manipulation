@@ -1,0 +1,16 @@
+#Given an integer array nums where every element appears three times except for one, which appears exactly once. Find the single element and return it.
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        result = 0
+        for i in range(32):
+            count= 0
+            for x in nums:
+                if x & (1<<i):
+                    count=count+1
+            count = count % 3
+            if i==31:
+                result = result - (2**31)*count 
+            else:
+                result = result | (count << i) ## special condition to handle negative case in python
+        return int(result)
+        

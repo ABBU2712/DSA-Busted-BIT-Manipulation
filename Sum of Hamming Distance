@@ -1,0 +1,22 @@
+#Hamming distance between two non-negative integers is defined as the number of positions at which the corresponding bits are different.
+
+#Given an array A of N non-negative integers, find the sum of hamming distances of all pairs of integers in the array. Return the answer modulo 1000000007.
+
+class Solution:
+    # @param A : tuple of integers
+    # @return an integer
+    def hammingDistance(self, A):
+        ans = 0  # Initialize result
+        n=len(A)
+ 
+    # traverse over all bits
+        for i in range(0, 32):
+            count = 0
+            for j in range(0, n):
+                if ( (A[j] & (1 << i)) ):
+                    count+= 1
+ 
+        # Add "count * (n - count) * 2" to the answer
+            ans += (count * (n - count) * 2) ##This is an permutation
+     
+        return ans
